@@ -4,16 +4,19 @@ git submodule init && git submodule update
 
 if [ -e ~/.vimrc ]; then
   echo "~/.vimrc exists."
-  echo "Do you want backup existing ~/.vimrc? (Y/N)"
-  read a
-  if [[ $a == "Y" || $a == "y" ]]; then
-    echo "Copying ~/.vimrc to ~/.vimrc_backup."
-    cp ~/.vimrc ~/.vimrc_backup
-  else
-    echo "Overwritting existing ~/.vimrc"
-  fi
+  read -r -p "Do you want backup existing ~/.vimrc? (Y/N) " response
+  case $response in
+    [yY][eE][sS]|[yY]) 
+      echo "Moving ~/.vimrc to ~/.vimrc_backup."
+      mv -f ~/.vimrc ~/.vimrc_backup
+      ;;
+    *)
+      echo "Overwriting existing ~/.vimrc"
+      ;;
+  esac
 fi
 
-ln -sF ~/.vim/vimrc ~/.vimrc
+echo "Creating link from ~/.vimrc to ~/.vim/vimrc"
+ln -sf ~/.vim/vimrc ~/.vimrc
 
 echo "done."
