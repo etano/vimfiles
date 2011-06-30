@@ -37,8 +37,8 @@ if v:version >= 703
 endif
 
 "default indent settings
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set autoindent
 
@@ -253,12 +253,13 @@ let g:syntastic_auto_loc_list=2
 let g:snips_author = "Martin Grenfell"
 
 "taglist settings
+let Tlist_Auto_Highlight_Tag = 1
 let Tlist_Compact_Format = 1
 let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 0
+let Tlist_Exit_OnlyWindow = 1
 let Tlist_WinWidth = 35
 let tlist_php_settings = 'php;c:class;f:Functions'
-let Tlist_Use_Right_Window=1
+let Tlist_Use_Right_Window=0
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Display_Tag_Scope = 1
 let Tlist_Process_File_Always = 1
@@ -266,7 +267,7 @@ let Tlist_Show_One_File = 1
 
 "nerdtree settings
 let g:NERDTreeMouseMode = 2
-let g:NERDTreeWinSize = 40
+let g:NERDTreeWinSize = 35
 
 "explorer mappings
 nnoremap <f1> :BufExplorer<cr>
