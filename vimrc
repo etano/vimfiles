@@ -21,7 +21,6 @@ set number      "show line numbers
 set list
 set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
-
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
 
@@ -328,4 +327,3 @@ autocmd BufReadPost fugitive://*
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
-
