@@ -79,11 +79,7 @@ set ttymouse=xterm2
 "solarized
 "let g:solarized_termcolors=256
 syntax enable
-if has('gui_running')
-  set background=light
-else
-  set background=light
-endif
+set background=dark
 colorscheme solarized
 
 "hide buffers when not displayed
