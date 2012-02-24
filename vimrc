@@ -74,10 +74,10 @@ set mouse=a
 set ttymouse=xterm2
 
 "tell the term has 256 colors
-"set t_Co=256
+set t_Co=16
 
 "solarized
-"let g:solarized_termcolors=256
+let g:solarized_termcolors=16
 syntax enable
 set background=dark
 colorscheme solarized
