@@ -41,6 +41,10 @@ set softtabstop=2
 set expandtab
 set autoindent
 
+"session settings
+set ssop-=options " do not store global and local values in a session
+set ssop-=folds " do not store folds
+
 "folding settings
 set foldmethod=indent   "fold based on indent
 set foldnestmax=3       "deepest fold is 3 levels
@@ -63,13 +67,24 @@ filetype indent on
 
 "turn on syntax highlighting
 syntax on
+au BufNewFile,BufRead *.in set filetype=c
 
 "some stuff to get the mouse going in term
 set mouse=a
 set ttymouse=xterm2
 
 "tell the term has 256 colors
-set t_Co=256
+"set t_Co=256
+
+"solarized
+"let g:solarized_termcolors=256
+syntax enable
+if has('gui_running')
+  set background=light
+else
+  set background=light
+endif
+colorscheme solarized
 
 "hide buffers when not displayed
 set hidden
@@ -91,8 +106,6 @@ set statusline+=%h      "help file flag
 set statusline+=%y      "filetype
 set statusline+=%r      "read only flag
 set statusline+=%m      "modified flag
-
-set statusline+=%{fugitive#statusline()}
 
 "display a warning if &et is wrong, or we have mixed-indenting
 set statusline+=%#error#
@@ -272,14 +285,10 @@ let g:NERDTreeWinSize = 35
 nnoremap <f1> :BufExplorer<cr>
 nnoremap <f2> :NERDTreeToggle<cr>
 nnoremap <f3> :TlistToggle<cr>
+nnoremap <f4> :GundoToggle<cr>
 
 "source project specific config files
-runtime! projects/**/*.vim
-
-"dont load csapprox if we no gui support - silences an annoying warning
-if !has("gui")
-    let g:CSApprox_loaded = 1
-endif
+"runtime! projects/**/*.vim
 
 "make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
@@ -301,7 +310,6 @@ endfunction
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
 
-
 "jump to last cursor position when opening a file
 "dont do it when writing a commit log entry
 autocmd BufReadPost * call SetCursorPosition()
@@ -317,13 +325,3 @@ endfunction
 "spell check when writing commit logs
 autocmd filetype svn,*commit* setlocal spell
 
-"http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
-"hacks from above (the url, not jesus) to delete fugitive buffers when we
-"leave them - otherwise the buffer list gets poluted
-"
-"add a mapping on .. to view parent tree
-autocmd BufReadPost fugitive://* set bufhidden=delete
-autocmd BufReadPost fugitive://*
-  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-  \   nnoremap <buffer> .. :edit %:h<CR> |
-  \ endif
