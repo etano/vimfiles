@@ -19,7 +19,7 @@ set number      "show line numbers
 
 "display tabs and trailing spaces
 set list
-set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
+set listchars=tab:▷~,trail:~,nbsp:~
 
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
@@ -80,7 +80,7 @@ set t_Co=16
 let g:solarized_termcolors=16
 syntax enable
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 
 "hide buffers when not displayed
 set hidden
