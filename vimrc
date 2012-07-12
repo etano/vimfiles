@@ -80,6 +80,7 @@ set t_Co=16
 let g:solarized_termcolors=16
 syntax enable
 set background=dark
+nnoremap <C-P> :colorscheme solarized<cr>
 "colorscheme solarized
 
 "hide buffers when not displayed
@@ -276,6 +277,10 @@ let Tlist_Show_One_File = 1
 "nerdtree settings
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 35
+
+"movement mappings
+map <C-Down> 10j
+map <C-Up> 10k
 
 "explorer mappings
 nnoremap <f1> :BufExplorer<cr>
