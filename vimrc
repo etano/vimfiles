@@ -83,6 +83,9 @@ set background=dark
 nnoremap <C-P> :colorscheme solarized<cr>
 "colorscheme solarized
 
+"paste toggle
+set pastetoggle=<C-V>
+
 "hide buffers when not displayed
 set hidden
 
