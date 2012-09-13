@@ -17,8 +17,8 @@ if [ -e ~/.vim ]; then
   esac
 fi
 
-#echo "Creating link from ~/vimfiles to ~/.vim"
-#ln -sf ~/vimfiles ~/.vim
+echo "Creating link from ~/vimfiles to ~/.vim"
+ln -sf ~/vimfiles ~/.vim
 
 if [ -e ~/.vimrc ]; then
   echo "~/.vimrc exists."
