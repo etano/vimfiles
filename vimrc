@@ -8,6 +8,7 @@ call pathogen#helptags()
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+set t_kb=
 
 "store lots of :cmdline history
 set history=1000
@@ -80,11 +81,10 @@ set t_Co=16
 let g:solarized_termcolors=16
 syntax enable
 set background=dark
-nnoremap <C-P> :colorscheme solarized<cr>
-"colorscheme solarized
+colorscheme solarized
 
 "paste toggle
-set pastetoggle=<C-V>
+set pastetoggle=<C-B>
 
 "hide buffers when not displayed
 set hidden
