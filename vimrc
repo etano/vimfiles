@@ -81,7 +81,7 @@ let g:solarized_termcolors=16
 syntax enable
 set background=dark
 nnoremap <C-P> :colorscheme solarized<cr>
-"colorscheme solarized
+colorscheme solarized
 
 "paste toggle
 set pastetoggle=<C-V>
