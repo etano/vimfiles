@@ -48,8 +48,8 @@ set ssop-=folds " do not store folds
 
 "folding settings
 set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+set foldnestmax=99       "deepest fold is 3 levels
+"set nofoldenable        "dont fold by default
 
 set wildmode=list:longest   "make cmdline tab completion similar to bash
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
@@ -258,39 +258,9 @@ function! s:Median(nums)
     endif
 endfunction
 
-"syntastic settings
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-
-"snipmate settings
-let g:snips_author = "Martin Grenfell"
-
-"taglist settings
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Compact_Format = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_WinWidth = 35
-let tlist_php_settings = 'php;c:class;f:Functions'
-let Tlist_Use_Right_Window=0
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Display_Tag_Scope = 1
-let Tlist_Process_File_Always = 1
-let Tlist_Show_One_File = 1
-
-"nerdtree settings
-let g:NERDTreeMouseMode = 2
-let g:NERDTreeWinSize = 35
-
 "movement mappings
 map <C-Down> 10j
 map <C-Up> 10k
-
-"explorer mappings
-nnoremap <f1> :BufExplorer<cr>
-nnoremap <f2> :NERDTreeToggle<cr>
-nnoremap <f3> :TlistToggle<cr>
-nnoremap <f4> :GundoToggle<cr>
 
 "source project specific config files
 "runtime! projects/**/*.vim
@@ -330,3 +300,46 @@ endfunction
 "spell check when writing commit logs
 autocmd filetype svn,*commit* setlocal spell
 
+"""""""""""
+" PLUGINS "
+"""""""""""
+
+"syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+
+"ctrlp
+nnoremap <C-p> <Esc>:CtrlP<cr>
+nnoremap <C-b> <Esc>:CtrlPBuffer<cr>
+
+"ack
+map <leader>a <Esc>:Ack!
+
+"taglist
+nnoremap <silent> <C-t> :TlistToggle<cr>
+let Tlist_Auto_Open = 1
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Compact_Format = 1
+let Tlist_Enable_Fold_Column = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_WinWidth = 35
+let tlist_php_settings = 'php;c:class;f:Functions'
+let Tlist_Use_Right_Window = 0
+let Tlist_GainFocus_On_ToggleOpen = 0
+let Tlist_Display_Tag_Scope = 1
+let Tlist_Process_File_Always = 1
+let Tlist_Show_One_File = 1
+
+"gundo
+nnoremap <C-u> :GundoToggle<cr>
+
+"UltiSnips
+"matchit
+"delimitMate
+"indexed-search
+"repeat
+"solarized
+"supertab
+"tabular
+"surround
+"unimpaired
