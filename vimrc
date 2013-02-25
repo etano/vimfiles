@@ -47,8 +47,9 @@ set ssop-=options " do not store global and local values in a session
 set ssop-=folds " do not store folds
 
 "folding settings
-set foldmethod=indent   "fold based on indent
-set foldnestmax=99       "deepest fold is 3 levels
+set foldmethod=syntax   "fold based on indent
+set foldnestmax=3       "deepest fold
+nnoremap z za
 "set nofoldenable        "dont fold by default
 
 set wildmode=list:longest   "make cmdline tab completion similar to bash
