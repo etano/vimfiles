@@ -335,6 +335,7 @@ let Tlist_Show_One_File = 1
 nnoremap <C-u> :GundoToggle<cr>
 
 "UltiSnips
+set runtimepath+=~/.vim/ultisnips_rep
 "matchit
 "delimitMate
 "indexed-search
