@@ -317,7 +317,7 @@ map <leader>a <Esc>:Ack!
 
 "taglist
 nnoremap <silent> <C-t> :TlistToggle<cr>
-let Tlist_Auto_Open = 1
+let Tlist_Auto_Open = 0
 let Tlist_Auto_Highlight_Tag = 1
 let Tlist_Compact_Format = 1
 let Tlist_Enable_Fold_Column = 1
