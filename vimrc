@@ -48,7 +48,7 @@ set ssop-=folds " do not store folds
 
 "folding settings
 set foldmethod=syntax   "fold based on indent
-set foldnestmax=2       "deepest fold
+set foldnestmax=1       "deepest fold
 "set nofoldenable        "dont fold by default
 
 set wildmode=list:longest   "make cmdline tab completion similar to bash
