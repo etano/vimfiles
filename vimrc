@@ -81,11 +81,10 @@ set t_Co=16
 let g:solarized_termcolors=16
 syntax enable
 set background=dark
-nnoremap <C-P> :colorscheme solarized<cr>
 colorscheme solarized
 
 "paste toggle
-set pastetoggle=<C-B>
+set pastetoggle=<C-]>
 
 "hide buffers when not displayed
 set hidden
