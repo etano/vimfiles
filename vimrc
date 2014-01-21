@@ -41,6 +41,10 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd BufRead,BufNewFile *.c,*.cc,*.cpp,*.h,*.hpp setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd BufRead,BufNewFile *.py setlocal expandtab shiftwidth=4 softtabstop=4
 
 "session settings
 set ssop-=options " do not store global and local values in a session
@@ -75,7 +79,7 @@ set mouse=a
 set ttymouse=xterm2
 
 "tell the term has 256 colors
-set t_Co=16
+set t_Co=256
 
 "solarized
 let g:solarized_termcolors=16
@@ -311,9 +315,6 @@ let g:syntastic_auto_loc_list=2
 nnoremap <C-p> <Esc>:CtrlP<cr>
 nnoremap <C-b> <Esc>:CtrlPBuffer<cr>
 
-"ack
-map <leader>a <Esc>:Ack!
-
 "taglist
 nnoremap <silent> <C-t> :TlistToggle<cr>
 let Tlist_Auto_Open = 0
@@ -329,9 +330,6 @@ let Tlist_Display_Tag_Scope = 1
 let Tlist_Process_File_Always = 1
 let Tlist_Show_One_File = 1
 
-"gundo
-nnoremap <C-u> :GundoToggle<cr>
-
 "UltiSnips
 set runtimepath+=~/.vim/ultisnips_rep
 "matchit
@@ -339,7 +337,6 @@ set runtimepath+=~/.vim/ultisnips_rep
 "indexed-search
 "repeat
 "solarized
-"supertab
 "tabular
 "surround
 "unimpaired
