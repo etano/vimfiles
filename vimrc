@@ -88,6 +88,7 @@ set background=dark
 colorscheme solarized
 
 "paste toggle
+xnoremap p pgvy
 set pastetoggle=<C-]>
 
 "hide buffers when not displayed
