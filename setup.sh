@@ -72,4 +72,7 @@ echo "Creating link from ${HOME}/.vim/ftdetect to ${HOME}/.vim/bundle/ultisnips/
 mkdir -p ~/.vim/ftdetect
 ln -s ~/.vim/bundle/ultisnips/ftdetect/* ~/.vim/ftdetect
 
+echo "Installing plugins"
+vim +PluginInstall +qall
+
 echo "done."
