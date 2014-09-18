@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'SirVer/ultisnips'
+Plugin 'etano/vim-snippets'
 Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
@@ -330,6 +331,16 @@ autocmd filetype svn,*commit* setlocal spell
 """""""""""
 " PLUGINS "
 """""""""""
+
+" ultisnips
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+ let g:UltiSnipsEditSplit="vertical"
 
 "ctrlp
 nnoremap <C-p> <Esc>:CtrlP<cr>
