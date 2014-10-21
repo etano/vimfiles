@@ -15,6 +15,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'etano/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'sjl/gundo.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -346,4 +347,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "ctrlp
 nnoremap <C-p> <Esc>:CtrlP<cr>
 nnoremap <C-b> <Esc>:CtrlPBuffer<cr>
+
+"gundo
+nnoremap <F5> :GundoToggle<CR>
 
