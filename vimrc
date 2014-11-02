@@ -16,6 +16,8 @@ Plugin 'etano/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'sjl/gundo.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -351,3 +353,6 @@ nnoremap <C-b> <Esc>:CtrlPBuffer<cr>
 "gundo
 nnoremap <F5> :GundoToggle<CR>
 
+"syntastic
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
