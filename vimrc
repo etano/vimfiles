@@ -1,3 +1,26 @@
+let mapleader = "\<Space>" " leader
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>e :CtrlPBuffer<CR>
+nnoremap <Leader>u :GundoToggle<CR>
+nnoremap <Leader>x :bd<CR>
+nnoremap <Leader>q :q<CR>
+nmap <Leader><Leader> V
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+let g:ctrlp_use_caching = 0
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+  let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+    \ }
+endif
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -20,6 +43,8 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat'
+Plugin 'terryma/vim-expand-region'
+Plugin 'vim-scripts/gitignore'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,7 +94,7 @@ autocmd BufRead,BufNewFile *.py setlocal expandtab shiftwidth=4 softtabstop=4
 
 "folding settings
 set foldmethod=syntax   "fold based on indent
-set foldnestmax=1       "deepest fold
+set foldnestmax=2       "deepest fold
 "set nofoldenable        "dont fold by default
 
 set wildmode=list:longest   "make cmdline tab completion similar to bash
@@ -106,21 +131,13 @@ colorscheme solarized
 
 "paste toggle
 xnoremap p pgvy
-set pastetoggle=<C-]>
+set pastetoggle=<Leader>p
 
 "hide buffers when not displayed
 set hidden
 
 ""statusline setup
 set laststatus=2
-
-"movement mappings
-map <C-Down> 10j
-map <C-Up> 10k
-
-"make <c-l> clear the highlight as well as redraw
-nnoremap <C-L> :nohls<CR><C-L>
-inoremap <C-L> <C-O>:nohls<CR>
 
 "map Q to something useful
 noremap Q gq
@@ -157,26 +174,11 @@ autocmd filetype svn,*commit*,tex setlocal spell
 set spelllang=en
 set spellfile=$HOME/.vim/spell/en.utf-8.add
 
-"""""""""""
-" PLUGINS "
-"""""""""""
-
 " ultisnips
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
- let g:UltiSnipsEditSplit="vertical"
-
-"ctrlp
-nnoremap <C-p> <Esc>:CtrlP<cr>
-nnoremap <C-b> <Esc>:CtrlPBuffer<cr>
-
-"gundo
-nnoremap <C-7> :GundoToggle<CR>
+let g:UltiSnipsEditSplit="vertical"
 
 "syntastic
 let g:syntastic_cpp_compiler = 'g++'
