@@ -5,6 +5,8 @@ nnoremap <Leader>e :CtrlPBuffer<CR>
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <S-j> }j
+nnoremap <S-k> {
 nmap <Leader><Leader> V
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
