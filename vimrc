@@ -1,15 +1,38 @@
 let mapleader = "\<Space>" " leader
+noremap <S-a> i
+noremap <C-a> <S-i>
+noremap i k
+noremap k j
+noremap j h
+noremap h ^
+noremap ; $
+
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :CtrlPBuffer<CR>
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <S-j> }j
-nnoremap <S-k> {
+noremap <S-j> b
+noremap <S-k> }j
+noremap <S-i> {
+noremap <S-l> e
 nmap <Leader><Leader> V
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
+inoremap <A-h> <C-o>h
+inoremap <A-h> <C-o>j
+inoremap <A-k> <C-o>k
+inoremap <A-l> <C-o>l
+inoremap <C-x> <Esc>
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
 
 let g:ctrlp_use_caching = 0
 if executable('ag')
