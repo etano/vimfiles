@@ -17,7 +17,6 @@ noremap <S-j> b
 noremap <S-k> }j
 noremap <S-i> {
 noremap <S-l> e
-nmap <Leader><Leader> V
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 inoremap <A-h> <C-o>h
@@ -156,7 +155,7 @@ colorscheme solarized
 
 "paste toggle
 xnoremap p pgvy
-set pastetoggle=<Leader>p
+set pastetoggle=<Leader-S>p
 
 "hide buffers when not displayed
 set hidden
