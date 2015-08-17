@@ -154,8 +154,9 @@ set background=dark
 colorscheme solarized
 
 "paste toggle
-xnoremap p pgvy
-set pastetoggle=<Leader-S>p
+" Toggle paste mode
+" "   (prefer this over 'pastetoggle' to echo current state)
+nmap <leader>p :setlocal paste! paste?<cr>
 
 "hide buffers when not displayed
 set hidden
