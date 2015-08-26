@@ -55,6 +55,8 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " Plugins
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'spolu/dwm.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
@@ -107,14 +109,9 @@ if v:version >= 703
 endif
 
 "default indent settings
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set autoindent
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd BufRead,BufNewFile *.c,*.cc,*.cpp,*.h,*.hpp setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd BufRead,BufNewFile *.py setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType html setlocal shiftwidth=4 tabstop=4
+autocmd BufRead,BufNewFile *.c,*.cc,*.cpp,*.h,*.hpp setlocal expandtab shiftwidth=4 softtabstop=4
+set modeline
 
 "folding settings
 set foldmethod=syntax   "fold based on indent
@@ -131,10 +128,6 @@ set formatoptions-=o "dont continue comments when pushing o/O
 set scrolloff=3
 set sidescrolloff=7
 set sidescroll=1
-
-"load ftplugins and indent files
-filetype plugin on
-filetype indent on
 
 "turn on syntax highlighting
 syntax on
