@@ -6,6 +6,7 @@ noremap k j
 noremap j h
 noremap h ^
 noremap ; $
+xnoremap p pgvy
 
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
@@ -109,6 +110,10 @@ if v:version >= 703
 endif
 
 "default indent settings
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set autoindent
 autocmd FileType html setlocal shiftwidth=4 tabstop=4
 autocmd BufRead,BufNewFile *.c,*.cc,*.cpp,*.h,*.hpp setlocal expandtab shiftwidth=4 softtabstop=4
 set modeline
