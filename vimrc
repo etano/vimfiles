@@ -72,6 +72,7 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat'
 Plugin 'terryma/vim-expand-region'
 Plugin 'vim-scripts/gitignore'
+Plugin 'rhysd/vim-clang-format'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -117,6 +118,11 @@ set autoindent
 autocmd FileType html setlocal shiftwidth=4 tabstop=4
 autocmd BufRead,BufNewFile *.c,*.cc,*.cpp,*.h,*.hpp setlocal expandtab shiftwidth=4 softtabstop=4
 set modeline
+
+"Clang format settings
+let g:clang_format#style_options = {
+    \ "ColumnLimit": 0,
+    \ "Standard": "C++11"}
 
 "folding settings
 set foldmethod=syntax   "fold based on indent
