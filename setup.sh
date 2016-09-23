@@ -2,11 +2,11 @@
 
 if [ -e ${HOME}/.vimrc ]; then
   echo "${HOME}/.vimrc exists."
-  read -r -p "Do you want backup existing ${HOME}/.vimrc? (Y/N) " response
+  response="Y"
   case $response in
     [yY][eE][sS]|[yY])
-      echo "Moving ${HOME}/.vimrc to ${HOME}/.vimrc_backup."
-      mv -f ${HOME}/.vimrc ${HOME}/.vimrc_backup
+      echo "Moving ${HOME}/.vimrc to ${HOME}/.vimrc.bak"
+      mv -f ${HOME}/.vimrc ${HOME}/.vimrc.bak
       ;;
     [nN]|[nN])
       echo "Overwriting existing ${HOME}/.vimrc"
@@ -24,11 +24,11 @@ ln -sf ${HOME}/vimfiles/vimrc ${HOME}/.vimrc
 
 if [ -e ${HOME}/.vim ]; then
   echo "${HOME}/.vim exists."
-  read -r -p "Do you want backup existing ${HOME}/.vim? (Y/N) " response
+  response="Y"
   case $response in
     [yY][eE][sS]|[yY])
-      echo "Moving ${HOME}/.vim to ${HOME}/.vim_backup."
-      mv -f ${HOME}/.vim ${HOME}/.vim_backup
+      echo "Moving ${HOME}/.vim to ${HOME}/.vim.bak"
+      mv -f ${HOME}/.vim ${HOME}/.vim.bak
       ;;
     [nN]|[nN])
       echo "Overwriting existing ${HOME}/.vim"
@@ -51,11 +51,11 @@ git submodule init && git submodule update
 
 if [ -e ${HOME}/.vim/ftdetect ]; then
   echo "${HOME}/.vim/ftdetect exists."
-  read -r -p "Do you want backup existing ${HOME}/.vim/ftdetect? (Y/N) " response
+  response="Y"
   case $response in
     [yY][eE][sS]|[yY])
-      echo "Moving ${HOME}/.vim/ftdetect to ${HOME}/.vim/ftdetect_backup."
-      mv -f ${HOME}/.vim/ftdetect ${HOME}/.vim/ftdetect_backup
+      echo "Moving ${HOME}/.vim/ftdetect to ${HOME}/.vim/ftdetect.bak"
+      mv -f ${HOME}/.vim/ftdetect ${HOME}/.vim/ftdetect.bak
       ;;
     [nN]|[nN])
       echo "Overwriting existing ${HOME}/.vim"
