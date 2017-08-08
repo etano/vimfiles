@@ -61,7 +61,6 @@ Plugin 'spolu/dwm.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'SirVer/ultisnips'
 Plugin 'etano/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'digitaltoad/vim-jade'
@@ -202,12 +201,6 @@ autocmd filetype svn,*commit*,tex setlocal spell
 "spell check
 set spelllang=en
 set spellfile=$HOME/.vim/spell/en.utf-8.add
-
-" ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
 
 "syntastic
 set statusline+=%#warningmsg#
