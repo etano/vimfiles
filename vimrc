@@ -108,6 +108,7 @@ if v:version >= 703
 
     set colorcolumn=+1 "mark the ideal max text width
 endif
+set colorcolumn=80
 
 "default indent settings
 set shiftwidth=2
