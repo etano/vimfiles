@@ -1,7 +1,5 @@
 #!/bin/bash
 
-git submodule init && git submodule update
-
 echo "Creating link from ${HOME}/.vimrc to ${PWD}/vimrc"
 if [ -e ${HOME}/.vimrc ]; then rm ${HOME}/.vimrc; fi
 ln -sf ${PWD}/vimrc ${HOME}/.vimrc
