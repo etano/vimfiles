@@ -7,3 +7,4 @@ projects/*
 ftdetect/*
 .netrwhist
 bundle/
+plugged/

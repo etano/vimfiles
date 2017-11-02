@@ -12,12 +12,7 @@ if [ -e ${HOME}/.vim ]; then
 fi
 ln -sf ${PWD} ${HOME}/.vim
 
-echo "Creating link from ${HOME}/.vim/ftdetect to ${HOME}/.vim/bundle/ultisnips/ftdetect"
-if [ -e ${HOME}/.vim/ftdetect ]; then rm -rf ${HOME}/.vim/ftdetect; fi
-mkdir -p ${HOME}/.vim/ftdetect
-ln -s ${HOME}/.vim/bundle/ultisnips/ftdetect/* ${HOME}/.vim/ftdetect
-
 echo "Installing plugins"
-vim +PluginInstall +qall
+vim +PlugInstall
 
 echo "done."

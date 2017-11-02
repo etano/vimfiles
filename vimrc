@@ -8,9 +8,10 @@ noremap h ^
 noremap ; $
 xnoremap p pgvy
 
-nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>o :Files<CR>
+nnoremap <Leader>e :Buffers<CR>
+nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>e :CtrlPBuffer<CR>
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
@@ -34,59 +35,39 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
-let g:ctrlp_use_caching = 0
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-else
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-  let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-    \ }
-endif
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
 
-" Plugins
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'spolu/dwm.vim'
-Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'etano/vim-snippets'
-Plugin 'scrooloose/syntastic'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'sjl/gundo.vim'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-repeat'
-Plugin 'terryma/vim-expand-region'
-Plugin 'vim-scripts/gitignore'
-Plugin 'rhysd/vim-clang-format'
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'spolu/dwm.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'etano/vim-snippets'
+Plug 'scrooloose/syntastic'
+Plug 'digitaltoad/vim-jade'
+Plug 'sjl/gundo.vim'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+Plug 'terryma/vim-expand-region'
+Plug 'vim-scripts/gitignore'
+Plug 'rhysd/vim-clang-format'
+
+" Initialize plugin system
+call plug#end()
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+
+" fzf
+set rtp+=~/.fzf
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
