@@ -1,23 +1,20 @@
 let mapleader = "\<Space>" " leader
-noremap <S-a> i
-noremap <C-a> <S-i>
-noremap i k
-noremap k j
-noremap j h
-noremap h ^
 noremap ; $
 xnoremap p pgvy
 
-nnoremap <Leader>o :Files<CR>
+nnoremap <Leader>i :Files<CR>
+nnoremap <Leader>o :GFiles<CR>
+nnoremap <leader>f :Files <C-R>9<CR>
+nnoremap <leader>h :History:<CR>
 nnoremap <Leader>e :Buffers<CR>
 nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
-noremap <S-j> b
-noremap <S-k> }j
-noremap <S-i> {
+noremap <S-h> b
+noremap <S-j> }j
+noremap <S-k> {k
 noremap <S-l> e
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -26,14 +23,6 @@ inoremap <A-h> <C-o>j
 inoremap <A-k> <C-o>k
 inoremap <A-l> <C-o>l
 inoremap <C-x> <Esc>
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -47,6 +36,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'spolu/dwm.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'arcticicestudio/nord-vim'
 Plug 'etano/vim-snippets'
 Plug 'scrooloose/syntastic'
 Plug 'digitaltoad/vim-jade'
@@ -56,8 +46,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
-Plug 'vim-scripts/gitignore'
+"Plug 'vim-scripts/gitignore'
 Plug 'rhysd/vim-clang-format'
+Plug 'posva/vim-vue'
 
 " Initialize plugin system
 call plug#end()
@@ -98,6 +89,7 @@ set expandtab
 set autoindent
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile *.c,*.cc,*.cpp,*.h,*.hpp setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 set modeline
 
 "Clang format settings
@@ -132,11 +124,12 @@ set ttymouse=xterm2
 "tell the term has 256 colors
 set t_Co=256
 
-"solarized
-let g:solarized_termcolors=16
+"colors
 syntax enable
 set background=dark
-colorscheme solarized
+"let g:solarized_termcolors=16
+"colorscheme solarized
+colorscheme nord
 
 "paste toggle
 " Toggle paste mode
@@ -184,6 +177,15 @@ autocmd filetype svn,*commit*,tex setlocal spell
 set spelllang=en
 set spellfile=$HOME/.vim/spell/en.utf-8.add
 
+"code search
+command! -bang -nargs=* CodeSearch
+  \ call fzf#vim#ag_raw(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+autocmd! BufEnter * py set_project_root()
+nmap <leader>1 viw"8y:CodeSearch! "<C-R>8"
+
 "syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -194,3 +196,38 @@ let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_quiet_messages = { "type": "style" }
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 '
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
+let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
+
+
+" Get root of the project by finding a .git folder
+python <<EOF
+
+import vim
+import os
+import time
+
+def set_project_root():
+    current_buffer_path = vim.current.buffer.name
+    found_root_directory = False
+
+    # Set the search directory to the current file in case we can not find the
+    # parent directory
+    parent_directory = current_buffer_path
+
+    while current_buffer_path and current_buffer_path != '/':
+        current_buffer_path, _ = os.path.split(current_buffer_path)
+
+        try:
+            d = os.listdir(current_buffer_path)
+        except Exception:
+            continue
+        else:
+            if '.git' in os.listdir(current_buffer_path):
+                found_root_directory = True
+                parent_directory = current_buffer_path
+                break
+
+    vim.command('let @9="{}"'.format(parent_directory))
+    return parent_directory
+EOF
