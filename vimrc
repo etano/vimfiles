@@ -183,7 +183,7 @@ command! -bang -nargs=* CodeSearch
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
-autocmd! BufEnter * py set_project_root()
+autocmd! BufEnter * py3 set_project_root()
 nmap <leader>1 viw"8y:CodeSearch! "<C-R>8"
 
 "syntastic
@@ -201,7 +201,7 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 
 
 " Get root of the project by finding a .git folder
-python <<EOF
+python3 <<EOF
 
 import vim
 import os
