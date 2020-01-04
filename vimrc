@@ -2,6 +2,19 @@ let mapleader = "\<Space>" " leader
 noremap ; $
 xnoremap p pgvy
 
+" my funkiness (wasd)
+noremap <S-a> i
+noremap <C-a> <S-i>
+noremap <C-i> <S-i>
+noremap i k
+noremap k j
+noremap j h
+noremap h ^
+noremap <S-j> b
+noremap <S-k> }j
+noremap <S-i> {
+noremap <S-l> e
+
 nnoremap <Leader>i :Files<CR>
 nnoremap <Leader>o :GFiles<CR>
 nnoremap <leader>f :Files <C-R>9<CR>
@@ -12,10 +25,6 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>u :GundoToggle<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
-noremap <S-h> b
-noremap <S-j> }j
-noremap <S-k> {k
-noremap <S-l> e
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 inoremap <A-h> <C-o>h
@@ -34,11 +43,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'hynek/vim-python-pep8-indent'
+Plug 'nvie/vim-flake8'
 Plug 'spolu/dwm.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'etano/vim-snippets'
-Plug 'scrooloose/syntastic'
 Plug 'digitaltoad/vim-jade'
 Plug 'sjl/gundo.vim'
 Plug 'bling/vim-airline'
@@ -80,7 +89,7 @@ if v:version >= 703
 
     set colorcolumn=+1 "mark the ideal max text width
 endif
-set colorcolumn=80
+set colorcolumn=120
 
 "default indent settings
 set shiftwidth=2
@@ -184,21 +193,11 @@ command! -bang -nargs=* CodeSearch
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
 autocmd! BufEnter * py3 set_project_root()
-nmap <leader>1 viw"8y:CodeSearch! "<C-R>8"
+nmap <leader>1 :CodeSearch "<C-R><C-W>"
 
-"syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_quiet_messages = { "type": "style" }
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 '
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
-let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
-
+"flake8
+autocmd BufWritePost *.py call flake8#Flake8()
+let g:flake8_show_in_file=1
 
 " Get root of the project by finding a .git folder
 python3 <<EOF
