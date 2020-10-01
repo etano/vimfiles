@@ -8,3 +8,4 @@ ftdetect/*
 .netrwhist
 bundle/
 plugged/
+autoload/plug.vim
