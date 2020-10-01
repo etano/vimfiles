@@ -20,9 +20,9 @@ nnoremap <Leader>o :GFiles<CR>
 nnoremap <leader>f :Files <C-R>9<CR>
 nnoremap <leader>h :History:<CR>
 nnoremap <Leader>e :Buffers<CR>
-nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>u :GundoToggle<CR>
+nnoremap <Leader>t :TagbarOpenAutoClose<CR>
 nnoremap <Leader>x :bd<CR>
 nnoremap <Leader>q :q<CR>
 vmap v <Plug>(expand_region_expand)
@@ -39,25 +39,27 @@ filetype off                  " required
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf', { 'dir': '/usr/local/opt/fzf', 'do': './install --all' }
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf.vim'
 Plug 'hynek/vim-python-pep8-indent'
-Plug 'nvie/vim-flake8'
 Plug 'spolu/dwm.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'arcticicestudio/nord-vim'
-Plug 'etano/vim-snippets'
-Plug 'digitaltoad/vim-jade'
+Plug 'honza/vim-snippets'
 Plug 'sjl/gundo.vim'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
-"Plug 'vim-scripts/gitignore'
+Plug 'vim-scripts/gitignore'
 Plug 'rhysd/vim-clang-format'
-Plug 'posva/vim-vue'
+Plug 'leafOfTree/vim-svelte-plugin'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/syntastic'
+Plug 'preservim/tagbar'
+
 
 " Initialize plugin system
 call plug#end()
@@ -65,8 +67,31 @@ call plug#end()
 " All of your Plugins must be added before the following line
 filetype plugin indent on    " required
 
+"turn on syntax highlighting
+syntax on
+
+" syntastic
+let g:syntastic_python_checkers = ['flake8']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+" linters
+let g:rustfmt_autosave = 1
+
+" gundo
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
+
 " fzf
-set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "allow backspacing over everything in insert mode
@@ -92,13 +117,16 @@ endif
 set colorcolumn=120
 
 "default indent settings
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
-autocmd BufRead,BufNewFile *.c,*.cc,*.cpp,*.h,*.hpp setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd FileType html setlocal
+autocmd FileType javascript setlocal
+autocmd FileType svelte setlocal
+au BufNewFile,BufRead *.in set filetype=c
+autocmd BufRead,BufNewFile *.c,*.cc,*.cpp,*.h,*.hpp setlocal expandtab
+autocmd BufRead,BufNewFile *.svelte setlocal expandtab ft=svelte shiftwidth=4 softtabstop=4
 set modeline
 
 "Clang format settings
@@ -121,10 +149,6 @@ set formatoptions-=o "dont continue comments when pushing o/O
 set scrolloff=3
 set sidescrolloff=7
 set sidescroll=1
-
-"turn on syntax highlighting
-syntax on
-au BufNewFile,BufRead *.in set filetype=c
 
 "some stuff to get the mouse going in term
 set mouse=a
@@ -194,10 +218,6 @@ command! -bang -nargs=* CodeSearch
   \                 <bang>0)
 autocmd! BufEnter * py3 set_project_root()
 nmap <leader>1 :CodeSearch "<C-R><C-W>"
-
-"flake8
-autocmd BufWritePost *.py call flake8#Flake8()
-let g:flake8_show_in_file=1
 
 " Get root of the project by finding a .git folder
 python3 <<EOF
