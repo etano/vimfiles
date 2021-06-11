@@ -91,7 +91,7 @@ if has('python3')
 endif
 
 " fzf
-set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "allow backspacing over everything in insert mode
