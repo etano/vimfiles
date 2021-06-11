@@ -59,6 +59,7 @@ Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic'
 Plug 'preservim/tagbar'
+Plug 'junegunn/goyo.vim'
 
 
 " Initialize plugin system
